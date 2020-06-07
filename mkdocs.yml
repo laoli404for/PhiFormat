@@ -1,0 +1,31 @@
+# Project information
+site_name: Project Phi Documentation
+site_description: A fanmade project for the rhythm game "Phigros".
+site_author: ZeroAurora
+site_url: https://zeroaurora.github.io/Phi/
+
+# Repository
+repo_name: ZeroAurora/Phi
+repo_url: https://github.com/ZeroAurora/Phi
+
+# Copyright
+copyright: By ZeroAurora & Phi Contributors. Licensed under CC-0.
+
+# Configuration
+theme:
+  name: material
+  language: zh
+  palette:
+    primary: indigo
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
