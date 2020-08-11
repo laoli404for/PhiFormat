@@ -1,15 +1,15 @@
 # Project information
-site_name: Project Phi Documentation
+site_name: PhiFormat Documentation
 site_description: A fanmade project for the rhythm game "Phigros".
 site_author: ZeroAurora
-site_url: https://zeroaurora.github.io/Phi/
+site_url: https://zeroaurora.github.io/PhiFormat/
 
 # Repository
-repo_name: ZeroAurora/Phi
-repo_url: https://github.com/ZeroAurora/Phi
+repo_name: ZeroAurora/PhiFormat
+repo_url: https://github.com/ZeroAurora/PhiFormat
 
 # Copyright
-copyright: By ZeroAurora & Phi Contributors. Licensed under CC-0.
+copyright: By ZeroAurora & PhiFormat Contributors. Licensed under CC-0.
 
 # Configuration
 theme:
@@ -21,6 +21,8 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
+  features:
+    - instant
 
 # Extensions
 markdown_extensions:
@@ -29,3 +31,9 @@ markdown_extensions:
       guess_lang: false
   - toc:
       permalink: true
+
+# Navigation
+nav:
+  - "index.md"
+  - "简体中文文档":
+    - "zh/quick-start.md"
