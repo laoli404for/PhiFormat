@@ -4,7 +4,7 @@
 
 **Phigros 自制谱计划**
 
-*Languages: [English](./README.md) | [**Chinese (Simplified)**](#phiformat-wip)*
+Languages: [English](./README.md) | [**Chinese (Simplified)**](#phiformat-wip)
 
 ## 关于
 

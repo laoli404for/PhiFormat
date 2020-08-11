@@ -4,6 +4,6 @@
 
 **Phigros 自制谱计划**
 
-*Languages: [**English**](#phiformat-wip) | [Chinese (Simplified)](./README_zh.md)*
+Languages: [**English**](#phiformat-wip) | [Chinese (Simplified)](./README_zh.md)
 
 *We are sorry that the contents are only available in Simplified Chinese currently. You're welcome to help us translate them into other languages.*
