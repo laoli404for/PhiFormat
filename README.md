@@ -6,4 +6,8 @@
 
 Languages: [**English**](#phiformat-wip) | [Chinese (Simplified)](./README_zh.md)
 
-*We are sorry that the contents are only available in Simplified Chinese currently. You're welcome to help us translate them into other languages.*
+## Translator Needed
+
+We are sorry that the contents are only available in Simplified Chinese currently. You're welcome to help us translate them into other languages.
+
+如果你是中文用户/开发者，请直接看[这里](./README_zh.md)。
