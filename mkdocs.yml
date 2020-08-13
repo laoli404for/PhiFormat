@@ -2,11 +2,11 @@
 site_name: PhiFormat Documentation
 site_description: A fanmade project for the rhythm game "Phigros".
 site_author: ZeroAurora
-site_url: https://zeroaurora.github.io/PhiFormat/
+site_url: https://phi-x.github.io/PhiFormat/
 
 # Repository
-repo_name: ZeroAurora/PhiFormat
-repo_url: https://github.com/ZeroAurora/PhiFormat
+repo_name: phi-x/PhiFormat
+repo_url: https://github.com/phi-x/PhiFormat
 
 # Copyright
 copyright: By ZeroAurora & PhiFormat Contributors. Licensed under CC-0.
