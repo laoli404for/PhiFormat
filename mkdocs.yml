@@ -32,8 +32,3 @@ markdown_extensions:
   - toc:
       permalink: true
 
-# Navigation
-nav:
-  - "index.md"
-  - "简体中文文档":
-    - "zh/quick-start.md"

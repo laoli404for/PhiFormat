@@ -1,5 +1,4 @@
-# PhiFormat
+# 首页
 
-## 简体中文文档
-
-- [PhiFormat 快速上手](./zh/quick-start.md)
+- [PhiFormat 快速上手](./quick-start.md)
+- [PhiFormat 规范文档](./spec.md)
