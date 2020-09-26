@@ -225,9 +225,38 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        规范文档
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" title="规范文档" class="md-nav__link md-nav__link--active">
       规范文档
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#phiformat" class="md-nav__link">
+    PhiFormat 总体一览
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -249,6 +278,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#phiformat" class="md-nav__link">
+    PhiFormat 总体一览
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -268,6 +312,43 @@
                 
                 
                 <h1 id="_1">规范文档<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="phiformat">PhiFormat 总体一览<a class="headerlink" href="#phiformat" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>(object) -&gt;
+    $schema (string)
+    timing (object) -&gt;
+        offset (number)
+        bpmList (array) -&gt;
+            (object) -&gt;
+                id (integer)
+                time (integer)
+                bpm (number)
+    judgeLineList (array) -&gt;
+        (object) -&gt;
+            id (integer)
+            eventList (array) -&gt;
+                (object) -&gt;
+                    id (integer)
+                    type (string) // Or integer? Need further discussion.
+                    startTime (integer)
+                    endTime (integer)
+                    properties (object) -&gt;
+                        (...)
+            speedList (array) -&gt;
+                (object) -&gt;
+                    id (integer)
+                    time (integer)
+                    speed (number)
+            noteList (array) -&gt;
+                (object) -&gt;
+                    id (integer)
+                    type (integer) // This can be integer since notes have only 4 types.
+                    startTime (integer)
+                    endTime (integer)
+                    relativeX (number)
+                    side (integer) // Should be 1 or -1.
+                    speed (number, optional)
+                    isFake (bool)
+</code></pre></div>
                 
               
               
