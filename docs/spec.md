@@ -23,11 +23,6 @@
                     endTime (integer)
                     properties (object) ->
                         (...)
-            speedList (array) ->
-                (object) ->
-                    id (integer)
-                    time (integer)
-                    speed (number)
             noteList (array) ->
                 (object) ->
                     id (integer)
@@ -104,13 +99,15 @@ interface FadeEventData extends BaseEventData {
   };
 }
 
-export type EventData = MoveEventData | RotateEventData | FadeEventData;
-
-export interface SpeedData {
-  id: number;
-  time: number;
-  speed: number;
+interface SpeedEventData extends BaseEventData {
+  type: 'speed';
+  properties: {
+    speed: number;
+    ease: Ease;
+  }
 }
+
+export type EventData = MoveEventData | RotateEventData | FadeEventData | SpeedEventData;
 
 interface BaseNoteData {
   id: number;
@@ -145,7 +142,6 @@ export type NoteData = ClickNoteData | FlickNoteData | DragNoteData | HoldNoteDa
 export interface JudgeLineData {
   id: number;
   eventList: EventData[];
-  speedList: SpeedData[];
   noteList: NoteData[];
 }
 
