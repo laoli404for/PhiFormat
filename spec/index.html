@@ -369,11 +369,6 @@
                     endTime (integer)
                     properties (object) -&gt;
                         (...)
-            speedList (array) -&gt;
-                (object) -&gt;
-                    id (integer)
-                    time (integer)
-                    speed (number)
             noteList (array) -&gt;
                 (object) -&gt;
                     id (integer)
@@ -447,13 +442,15 @@
   <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="kr">export</span> <span class="nx">type</span> <span class="nx">EventData</span> <span class="o">=</span> <span class="nx">MoveEventData</span> <span class="o">|</span> <span class="nx">RotateEventData</span> <span class="o">|</span> <span class="nx">FadeEventData</span><span class="p">;</span>
-
-<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">SpeedData</span> <span class="p">{</span>
-  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">time</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">speed</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="kr">interface</span> <span class="nx">SpeedEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;speed&#39;</span><span class="p">;</span>
+  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">speed</span>: <span class="kt">number</span><span class="p">;</span>
+    <span class="nx">ease</span>: <span class="kt">Ease</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="kr">export</span> <span class="nx">type</span> <span class="nx">EventData</span> <span class="o">=</span> <span class="nx">MoveEventData</span> <span class="o">|</span> <span class="nx">RotateEventData</span> <span class="o">|</span> <span class="nx">FadeEventData</span> <span class="o">|</span> <span class="nx">SpeedEventData</span><span class="p">;</span>
 
 <span class="kr">interface</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
   <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
@@ -488,7 +485,6 @@
 <span class="kr">export</span> <span class="kr">interface</span> <span class="nx">JudgeLineData</span> <span class="p">{</span>
   <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">eventList</span>: <span class="kt">EventData</span><span class="p">[];</span>
-  <span class="nx">speedList</span>: <span class="kt">SpeedData</span><span class="p">[];</span>
   <span class="nx">noteList</span>: <span class="kt">NoteData</span><span class="p">[];</span>
 <span class="p">}</span>
 
