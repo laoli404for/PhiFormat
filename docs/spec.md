@@ -73,6 +73,17 @@ interface BaseEventData {
   properties: {};
 }
 
+interface ConstructEventData extends BaseEventData {
+  type: 'construct';
+  properties: {
+    x: number;
+    y: number;
+    angle: number;
+    alpha: number;
+    speed: number;
+  };
+}
+
 interface MoveEventData extends BaseEventData {
   type: 'move';
   properties: {
@@ -107,7 +118,7 @@ interface SpeedEventData extends BaseEventData {
   }
 }
 
-export type EventData = MoveEventData | RotateEventData | FadeEventData | SpeedEventData;
+export type EventData = ConstructEventData | MoveEventData | RotateEventData | FadeEventData | SpeedEventData;
 
 interface BaseNoteData {
   id: number;
@@ -134,7 +145,6 @@ interface DragNoteData extends BaseNoteData {
 
 interface HoldNoteData extends BaseNoteData {
   type: 'hold';
-  holdTime: number;
 }
 
 export type NoteData = ClickNoteData | FlickNoteData | DragNoteData | HoldNoteData;

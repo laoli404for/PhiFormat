@@ -3,7 +3,7 @@
 ## 时间单位：tick
 
 !!! abstract "一言蔽之"
-    每一拍（beat）均可分为 480 ticks。
+    每一拍（beat）均可分为 72 ticks。
 
 ## 基准坐标系
 
