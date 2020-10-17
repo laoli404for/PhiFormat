@@ -7,7 +7,7 @@
     $schema (string)
     timing (object) ->
         offset (number)
-        bpmList (array) ->
+        bpmList (array) -> // Should not be empty.
             (object) ->
                 id (integer)
                 time (integer)
@@ -18,7 +18,7 @@
             eventList (array) ->
                 (object) ->
                     id (integer)
-                    type (string) // Or integer? Need further discussion.
+                    type (string) // move, rotate, fade, speed or construct.
                     startTime (integer)
                     endTime (integer)
                     properties (object) ->
@@ -26,14 +26,14 @@
             noteList (array) ->
                 (object) ->
                     id (integer)
-                    type (integer) // This can be integer since notes have only 4 types.
+                    type (string) // click, flick, drag or hold.
                     startTime (integer)
                     endTime (integer)
-                    holdTime (number, optional)
+                    showTime (integer) // Defaults to 0.
                     relativeX (number)
                     side (integer) // Should be 1 or -1.
-                    speed (number, optional)
-                    isFake (bool)
+                    speed (number) // Defaults to 1.
+                    isFake (bool) // Defaults to false.
 ```
 
 ## 数据结构
@@ -52,7 +52,7 @@ export interface TimingData {
   bpmList: BpmData[];
 }
 
-type Ease =
+export type Ease =
   'linear'    |
   'backIn'    | 'backOut'    |
   'bounceIn'  | 'bounceOut'  |
@@ -65,15 +65,15 @@ type Ease =
   'quintIn'   | 'quintOut'   |
   'sineIn'    | 'sineOut'    ;
 
-interface BaseEventData {
+export interface BaseEventData {
   id: number;
   type: string;
   startTime: number;
   endTime: number;
-  properties: {};
+  properties: Record<string, any>;
 }
 
-interface ConstructEventData extends BaseEventData {
+export interface ConstructEventData extends BaseEventData {
   type: 'construct';
   properties: {
     x: number;
@@ -84,7 +84,7 @@ interface ConstructEventData extends BaseEventData {
   };
 }
 
-interface MoveEventData extends BaseEventData {
+export interface MoveEventData extends BaseEventData {
   type: 'move';
   properties: {
     x: number;
@@ -94,7 +94,7 @@ interface MoveEventData extends BaseEventData {
   };
 }
 
-interface RotateEventData extends BaseEventData {
+export interface RotateEventData extends BaseEventData {
   type: 'rotate';
   properties: {
     angle: number;
@@ -102,7 +102,7 @@ interface RotateEventData extends BaseEventData {
   };
 }
 
-interface FadeEventData extends BaseEventData {
+export interface FadeEventData extends BaseEventData {
   type: 'fade';
   properties: {
     alpha: number;
@@ -110,40 +110,41 @@ interface FadeEventData extends BaseEventData {
   };
 }
 
-interface SpeedEventData extends BaseEventData {
+export interface SpeedEventData extends BaseEventData {
   type: 'speed';
   properties: {
     speed: number;
     ease: Ease;
-  }
+  };
 }
 
 export type EventData = ConstructEventData | MoveEventData | RotateEventData | FadeEventData | SpeedEventData;
 
-interface BaseNoteData {
+export interface BaseNoteData {
   id: number;
   type: string;
   startTime: number;
   endTime: number;
+  showTime: number;
   relativeX: number;
   side: 1 | -1;
-  speed?: number;
+  speed: number;
   isFake: boolean;
 }
 
-interface ClickNoteData extends BaseNoteData {
+export interface ClickNoteData extends BaseNoteData {
   type: 'click';
 }
 
-interface FlickNoteData extends BaseNoteData {
+export interface FlickNoteData extends BaseNoteData {
   type: 'flick';
 }
 
-interface DragNoteData extends BaseNoteData {
+export interface DragNoteData extends BaseNoteData {
   type: 'drag';
 }
 
-interface HoldNoteData extends BaseNoteData {
+export interface HoldNoteData extends BaseNoteData {
   type: 'hold';
 }
 
