@@ -353,7 +353,7 @@
     $schema (string)
     timing (object) -&gt;
         offset (number)
-        bpmList (array) -&gt;
+        bpmList (array) -&gt; // Should not be empty.
             (object) -&gt;
                 id (integer)
                 time (integer)
@@ -364,7 +364,7 @@
             eventList (array) -&gt;
                 (object) -&gt;
                     id (integer)
-                    type (string) // Or integer? Need further discussion.
+                    type (string) // move, rotate, fade, speed or construct.
                     startTime (integer)
                     endTime (integer)
                     properties (object) -&gt;
@@ -372,19 +372,19 @@
             noteList (array) -&gt;
                 (object) -&gt;
                     id (integer)
-                    type (integer) // This can be integer since notes have only 4 types.
+                    type (string) // click, flick, drag or hold.
                     startTime (integer)
                     endTime (integer)
-                    holdTime (number, optional)
+                    showTime (integer) // Defaults to 0.
                     relativeX (number)
                     side (integer) // Should be 1 or -1.
-                    speed (number, optional)
-                    isFake (bool)
+                    speed (number) // Defaults to 1.
+                    isFake (bool) // Defaults to false.
 </code></pre></div>
 
 <h2 id="_2">数据结构<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="typescript">TypeScript<a class="headerlink" href="#typescript" title="Permanent link">&para;</a></h3>
-<div class="typescript codehilite"><pre><span></span><code><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">BpmData</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">BpmData</span> <span class="p">{</span>
   <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">time</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">bpm</span>: <span class="kt">number</span><span class="p">;</span>
@@ -395,7 +395,7 @@
   <span class="nx">bpmList</span>: <span class="kt">BpmData</span><span class="p">[];</span>
 <span class="p">}</span>
 
-<span class="nx">type</span> <span class="nx">Ease</span> <span class="o">=</span>
+<span class="kr">export</span> <span class="nx">type</span> <span class="nx">Ease</span> <span class="o">=</span>
   <span class="s1">&#39;linear&#39;</span>    <span class="o">|</span>
   <span class="s1">&#39;backIn&#39;</span>    <span class="o">|</span> <span class="s1">&#39;backOut&#39;</span>    <span class="o">|</span>
   <span class="s1">&#39;bounceIn&#39;</span>  <span class="o">|</span> <span class="s1">&#39;bounceOut&#39;</span>  <span class="o">|</span>
@@ -408,15 +408,15 @@
   <span class="s1">&#39;quintIn&#39;</span>   <span class="o">|</span> <span class="s1">&#39;quintOut&#39;</span>   <span class="o">|</span>
   <span class="s1">&#39;sineIn&#39;</span>    <span class="o">|</span> <span class="s1">&#39;sineOut&#39;</span>    <span class="p">;</span>
 
-<span class="kr">interface</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
   <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">type</span>: <span class="kt">string</span><span class="p">;</span>
   <span class="nx">startTime</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">endTime</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">properties</span><span class="o">:</span> <span class="p">{};</span>
+  <span class="nx">properties</span>: <span class="kt">Record</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">ConstructEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">ConstructEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;construct&#39;</span><span class="p">;</span>
   <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
@@ -427,7 +427,7 @@
   <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">MoveEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">MoveEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">;</span>
   <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
@@ -437,7 +437,7 @@
   <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">RotateEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">RotateEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;rotate&#39;</span><span class="p">;</span>
   <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">angle</span>: <span class="kt">number</span><span class="p">;</span>
@@ -445,7 +445,7 @@
   <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">FadeEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">FadeEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;fade&#39;</span><span class="p">;</span>
   <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">alpha</span>: <span class="kt">number</span><span class="p">;</span>
@@ -453,40 +453,41 @@
   <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">SpeedEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">SpeedEventData</span> <span class="kr">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;speed&#39;</span><span class="p">;</span>
   <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">speed</span>: <span class="kt">number</span><span class="p">;</span>
     <span class="nx">ease</span>: <span class="kt">Ease</span><span class="p">;</span>
-  <span class="p">}</span>
+  <span class="p">};</span>
 <span class="p">}</span>
 
 <span class="kr">export</span> <span class="nx">type</span> <span class="nx">EventData</span> <span class="o">=</span> <span class="nx">ConstructEventData</span> <span class="o">|</span> <span class="nx">MoveEventData</span> <span class="o">|</span> <span class="nx">RotateEventData</span> <span class="o">|</span> <span class="nx">FadeEventData</span> <span class="o">|</span> <span class="nx">SpeedEventData</span><span class="p">;</span>
 
-<span class="kr">interface</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
   <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">type</span>: <span class="kt">string</span><span class="p">;</span>
   <span class="nx">startTime</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">endTime</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="nx">showTime</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">relativeX</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">side</span>: <span class="kt">1</span> <span class="o">|</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-  <span class="nx">speed?</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="nx">speed</span>: <span class="kt">number</span><span class="p">;</span>
   <span class="nx">isFake</span>: <span class="kt">boolean</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">ClickNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">ClickNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">FlickNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">FlickNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;flick&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">DragNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">DragNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;drag&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kr">interface</span> <span class="nx">HoldNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="kr">interface</span> <span class="nx">HoldNoteData</span> <span class="kr">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
   <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;hold&#39;</span><span class="p">;</span>
 <span class="p">}</span>
 
