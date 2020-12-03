@@ -4,6 +4,8 @@
 
 **Phigros 自制谱计划**
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/phi-x/PhiFormat)
+
 ## 关于
 
 PhiFormat 是整个 PhiX 项目的核心，旨在为 Phigros 自制谱计划提供一个统一的格式。
