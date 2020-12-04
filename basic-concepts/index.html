@@ -240,14 +240,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tick" class="md-nav__link">
-    时间单位：tick
+  <a href="#_2" class="md-nav__link">
+    时间单位
   </a>
+  
+    <nav class="md-nav" aria-label="时间单位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offset" class="md-nav__link">
+    延迟值（Offset）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beat" class="md-nav__link">
+    节拍（Beat）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickphiformat" class="md-nav__link">
+    Tick：PhiFormat 基本时间单位
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     基准坐标系
   </a>
   
@@ -303,14 +330,41 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tick" class="md-nav__link">
-    时间单位：tick
+  <a href="#_2" class="md-nav__link">
+    时间单位
   </a>
+  
+    <nav class="md-nav" aria-label="时间单位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offset" class="md-nav__link">
+    延迟值（Offset）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beat" class="md-nav__link">
+    节拍（Beat）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tickphiformat" class="md-nav__link">
+    Tick：PhiFormat 基本时间单位
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     基准坐标系
   </a>
   
@@ -341,16 +395,26 @@
                 
                 
                 <h1 id="_1">基本概念<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="tick">时间单位：tick<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h2>
-<div class="admonition abstract">
-<p class="admonition-title">一言蔽之</p>
-<p>每一拍（beat）均可分为 72 ticks。</p>
+<h2 id="_2">时间单位<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="offset">延迟值（Offset）<a class="headerlink" href="#offset" title="Permanent link">&para;</a></h3>
+<p>TBD</p>
+<h3 id="beat">节拍（Beat）<a class="headerlink" href="#beat" title="Permanent link">&para;</a></h3>
+<p><strong>节拍</strong> 是（几乎？）所有音乐共同具有的概念。量化每分钟的节拍数的数值被称作 BPM (Beat Per Minute)。</p>
+<p>PhiFormat 设计上支持多 BPM 的音乐。</p>
+<h3 id="tickphiformat">Tick：PhiFormat 基本时间单位<a class="headerlink" href="#tickphiformat" title="Permanent link">&para;</a></h3>
+<p><strong>Tick</strong> 是 PhiFormat 中基本的时间单位。</p>
+<div class="admonition bug">
+<p class="admonition-title">Bug</p>
+<p>此块内容需要接受复核。</p>
 </div>
-<h2 id="_2">基准坐标系<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="admonition abstract">
-<p class="admonition-title">一言蔽之</p>
-<p>横屏时，以屏幕中央为原点，横向为 X 轴，纵向为 Y 轴，单位长度为半个横向长度，建立起的坐标系，称之为基本坐标系。</p>
+<p>在 PhiFormat 中，Tick 为整数值，从 0 开始计算。0 tick 被视为曲目的起始（0 second）。每一拍被划分为 72 个 Tick。例如， tick 72 意味第 2 拍的开始。</p>
+<div class="admonition note">
+<p class="admonition-title">为什么每一拍被划分为 72 个 tick？</p>
+<p>很简单：<code>8*9=72</code>。</p>
+<p>将一个拍数以 3 和 4 的倍数进行划分，将会带给谱面创作者极大的便利。为了满足可能的需求，我们将它划分为 8 和 9 的倍数。这应该能满足绝大多数的谱面创作者的需求。</p>
+<p>我们 <strong>强烈不推荐</strong> 将音符放置在比 1/72 更为细致的位置：这样做只会为玩家带来糟糕的体验。如果确实有需要，请考虑对 BPM 进行倍数操作。</p>
 </div>
+<h2 id="_3">基准坐标系<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h2 id="tbd">TBD<a class="headerlink" href="#tbd" title="Permanent link">&para;</a></h2>
                 
               
