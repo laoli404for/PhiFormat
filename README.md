@@ -1,6 +1,6 @@
 # PhiFormat (WIP)
 
-**A fanmade level format for the music game [*Phigros*](https://zh.moegirl.org.cn/Phigros).**
+**A fanmade level format for the music game [_Phigros_](https://zh.moegirl.org.cn/Phigros).**
 
 **Phigros 自制谱计划**
 
@@ -11,6 +11,19 @@
 PhiFormat 是整个 PhiX 项目的核心，旨在为 Phigros 自制谱计划提供一个统一的格式。
 
 开始阅读规范文档：[GitHub Pages](https://phi-x.github.io/PhiFormat/)
+
+## Build docs
+
+Ensure python (with pip) installed:
+
+```sh
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+mkdocs build
+```
+
+(I personally prefer pnpm so I use pnpx as the default package executer.)
 
 ## Translator Needed
 
