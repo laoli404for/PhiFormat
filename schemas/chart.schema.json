@@ -11,7 +11,7 @@
           "minimum": 0
         },
         "time": {
-          "type": "integer",
+          "type": "number",
           "minimum": 0
         },
         "value": {
@@ -55,7 +55,8 @@
           ],
           "default": "none"
         }
-      }
+      },
+      "required": ["id", "time", "value"]
     }
   },
 
@@ -74,14 +75,15 @@
             "minimum": 0
           },
           "time": {
-            "type": "integer",
+            "type": "number",
             "minimum": 0
           },
           "bpm": {
             "type": "number",
             "exclusiveMinimum": 0
           }
-        }
+        },
+        "required": ["id", "time", "bpm"]
       }
     },
     "judgeLineList": {
@@ -94,11 +96,11 @@
             "minimum": 0
           },
           "constructTime": {
-            "type": "integer",
+            "type": "number",
             "minimum": 0
           },
           "destructTime": {
-            "type": "integer",
+            "type": "number",
             "minimum": 0
           },
           "noteList": {
@@ -114,12 +116,12 @@
                   "type": "integer",
                   "enum": [1, 2, 3, 4]
                 },
-                "startTime": {
-                  "type": "integer",
+                "time": {
+                  "type": "number",
                   "minimum": 0
                 },
                 "holdTime": {
-                  "type": "integer",
+                  "type": "number",
                   "minimum": 0
                 },
                 "x": {
@@ -135,40 +137,60 @@
                 "isFake": {
                   "type": "boolean"
                 }
-              }
+              },
+              "required": [
+                "id",
+                "type",
+                "time",
+                "holdTime",
+                "x",
+                "speed",
+                "side",
+                "isFake"
+              ]
             }
+          },
+          "props": {
+            "type": "object",
+            "properties": {
+              "controlX": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/state" }
+              },
+              "controlY": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/state" }
+              },
+              "angle": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/state" }
+              },
+              "speed": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/state" }
+              },
+              "noteAlpha": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/state" }
+              },
+              "lineAlpha": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/state" }
+              }
+            },
+            "required": [
+              "controlX",
+              "controlY",
+              "angle",
+              "speed",
+              "noteAlpha",
+              "lineAlpha"
+            ]
           }
-        }
-      }
-    },
-    "props": {
-      "type": "object",
-      "properties": {
-        "controlX": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/state" }
         },
-        "controlY": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/state" }
-        },
-        "angle": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/state" }
-        },
-        "speed": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/state" }
-        },
-        "noteAlpha": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/state" }
-        },
-        "lineAlpha": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/state" }
-        }
+        "required": ["id", "constructTime", "destructTime", "noteList", "props"]
       }
     }
-  }
+  },
+  "required": ["musicOffset", "bpmList", "judgeLineList"]
 }

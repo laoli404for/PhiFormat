@@ -9,19 +9,19 @@
     bpmList (array) ->
         (object) ->
             id (integer)
-            time (integer)
+            time (number)
             bpm (number)
     judgeLineList (array) ->
         (object) ->
             id (integer)
-            constructTime (integer)
-            destructTime (integer)
+            constructTime (number)
+            destructTime (number)
             noteList (array) ->
                 (object) ->
                     id (integer)
                     type (integer) // 1 for tap, 2 for drag, 3 for hold, 4 for click
-                    startTime (integer)
-                    holdTime (integer)
+                    time (number)
+                    holdTime (number)
                     x (number)
                     speed (number)
                     side (integer) // 1 -1
@@ -30,7 +30,7 @@
                 controlX (array) ->
                     (object) ->
                         id (integer)
-                        time (integer)
+                        time (number)
                         value (number)
                         easing (string)
                 controlY ...
