@@ -1,3 +1,0 @@
-## Untitled schema Type
-
-unknown

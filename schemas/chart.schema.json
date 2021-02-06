@@ -1,3 +1,174 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "PhiFormat Chart File",
+
+  "definitions": {
+    "state": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "value": {
+          "type": "number"
+        },
+        "easing": {
+          "type": "string",
+          "enum": [
+            "none",
+            "linear",
+            "easeInQuad",
+            "easeOutQuad",
+            "easeInOutQuad",
+            "easeInCubic",
+            "easeOutCubic",
+            "easeInOutCubic",
+            "easeInQuart",
+            "easeOutQuart",
+            "easeInOutQuart",
+            "easeInQuint",
+            "easeOutQuint",
+            "easeInOutQuint",
+            "easeInSine",
+            "easeOutSine",
+            "easeInOutSine",
+            "easeInExpo",
+            "easeOutExpo",
+            "easeInOutExpo",
+            "easeInCirc",
+            "easeOutCirc",
+            "easeInOutCirc",
+            "easeInBounce",
+            "easeOutBounce",
+            "easeInOutBounce",
+            "easeInBack",
+            "easeOutBack",
+            "easeInOutBack",
+            "easeInElastic",
+            "easeOutElastic",
+            "easeInOutElastic"
+          ],
+          "default": "none"
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "properties": {
+    "musicOffset": {
+      "type": "number"
+    },
+    "bpmList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "time": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "bpm": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        }
+      }
+    },
+    "judgeLineList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "constructTime": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "destructTime": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "noteList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "type": {
+                  "type": "integer",
+                  "enum": [1, 2, 3, 4]
+                },
+                "startTime": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "holdTime": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "x": {
+                  "type": "number"
+                },
+                "speed": {
+                  "type": "number"
+                },
+                "side": {
+                  "type": "integer",
+                  "enum": [-1, 1]
+                },
+                "isFake": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "props": {
+      "type": "object",
+      "properties": {
+        "controlX": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/state" }
+        },
+        "controlY": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/state" }
+        },
+        "angle": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/state" }
+        },
+        "speed": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/state" }
+        },
+        "noteAlpha": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/state" }
+        },
+        "lineAlpha": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/state" }
+        }
+      }
+    }
+  }
 }

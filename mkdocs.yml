@@ -18,9 +18,6 @@ theme:
   palette:
     primary: indigo
     accent: indigo
-  font:
-    text: Roboto
-    code: Roboto Mono
   features:
     - instant
 
