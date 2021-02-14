@@ -11,7 +11,7 @@
           "minimum": 0
         },
         "time": {
-          "type": "number",
+          "type": "integer",
           "minimum": 0
         },
         "value": {
@@ -65,6 +65,10 @@
     "musicOffset": {
       "type": "number"
     },
+    "timingBase": {
+      "type": "integer",
+      "default": 48
+    },
     "bpmList": {
       "type": "array",
       "items": {
@@ -75,7 +79,7 @@
             "minimum": 0
           },
           "time": {
-            "type": "number",
+            "type": "integer",
             "minimum": 0
           },
           "bpm": {
@@ -96,11 +100,11 @@
             "minimum": 0
           },
           "constructTime": {
-            "type": "number",
+            "type": "integer",
             "minimum": 0
           },
           "destructTime": {
-            "type": "number",
+            "type": "integer",
             "minimum": 0
           },
           "noteList": {
@@ -117,11 +121,11 @@
                   "enum": [1, 2, 3, 4]
                 },
                 "time": {
-                  "type": "number",
+                  "type": "integer",
                   "minimum": 0
                 },
                 "holdTime": {
-                  "type": "number",
+                  "type": "integer",
                   "minimum": 0
                 },
                 "x": {
@@ -176,6 +180,10 @@
               "lineAlpha": {
                 "type": "array",
                 "items": { "$ref": "#/definitions/state" }
+              },
+              "displayRange": {
+                "type": "array",
+                "items": { "$ref": "#/definitions/state" }
               }
             },
             "required": [
@@ -184,7 +192,8 @@
               "angle",
               "speed",
               "noteAlpha",
-              "lineAlpha"
+              "lineAlpha",
+              "displayRange"
             ]
           }
         },
@@ -192,5 +201,5 @@
       }
     }
   },
-  "required": ["musicOffset", "bpmList", "judgeLineList"]
+  "required": ["musicOffset", "timingBase", "bpmList", "judgeLineList"]
 }

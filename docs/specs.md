@@ -6,6 +6,7 @@
 (object) ->
     $schema (string)
     musicOffset (number)
+    timingBase (integer)
     bpmList (array) ->
         (object) ->
             id (integer)
@@ -38,4 +39,5 @@
                 speed ...
                 noteAlpha ...
                 lineAlpha ...
+                displayRange ...
 ```
