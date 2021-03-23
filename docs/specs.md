@@ -4,25 +4,23 @@
 
 ```
 (object) ->
-    $schema (string)
+    schemaVersion (integer)
     musicOffset (number)
     timingBase (integer)
     bpmList (array) ->
         (object) ->
             id (integer)
-            time (number)
+            time (integer)
             bpm (number)
     judgeLineList (array) ->
         (object) ->
             id (integer)
-            constructTime (number)
-            destructTime (number)
             noteList (array) ->
                 (object) ->
                     id (integer)
                     type (integer) // 1 for tap, 2 for drag, 3 for hold, 4 for click
-                    time (number)
-                    holdTime (number)
+                    time (integer)
+                    holdTime (integer)
                     x (number)
                     speed (number)
                     side (integer) // 1 -1
@@ -31,7 +29,7 @@
                 controlX (array) ->
                     (object) ->
                         id (integer)
-                        time (number)
+                        time (integer)
                         value (number)
                         easing (string)
                 controlY ...

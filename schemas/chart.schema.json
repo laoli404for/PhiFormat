@@ -62,6 +62,9 @@
 
   "type": "object",
   "properties": {
+    "schemaVersion": {
+      "type": "integer"
+    },
     "musicOffset": {
       "type": "number"
     },
@@ -96,14 +99,6 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "constructTime": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "destructTime": {
             "type": "integer",
             "minimum": 0
           },

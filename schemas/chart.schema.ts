@@ -60,8 +60,6 @@ export interface State {
 
 export interface JudgeLineData {
   id: integer;
-  constructTime: integer;
-  destructTime: integer;
   noteList: NoteData[];
   props: {
     controlX: State[];
@@ -75,6 +73,7 @@ export interface JudgeLineData {
 }
 
 export interface ChartData {
+  schemaVersion: integer;
   musicOffset: number;
   timingBase: integer;
   bpmList: BpmData[];
