@@ -23,8 +23,6 @@ pip install -r requirements.txt
 mkdocs build
 ```
 
-(I personally prefer pnpm so I use pnpx as the default package executer.)
-
 ## Translator Needed
 
 We are sorry that the contents are only available in Simplified Chinese currently. You're welcome to help us translate them into other languages.
