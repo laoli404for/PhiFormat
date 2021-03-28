@@ -12,6 +12,7 @@ export interface NoteData {
   time: integer;
   holdTime: integer;
   x: number;
+  width: number;
   speed: number;
   side: 1 | -1;
   isFake: boolean;

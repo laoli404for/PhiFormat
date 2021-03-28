@@ -22,6 +22,7 @@
                     time (integer)
                     holdTime (integer)
                     x (number)
+                    width (number)
                     speed (number)
                     side (integer) // 1 -1
                     isFake (boolean)
