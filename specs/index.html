@@ -13,7 +13,7 @@
         <meta name="author" content="ZeroAurora">
       
       
-        <link rel="canonical" href="https://phi-x.github.io/PhiFormat/spec/">
+        <link rel="canonical" href="https://phi-x.github.io/PhiFormat/specs/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
@@ -266,29 +266,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#phiformat" class="md-nav__link">
-    PhiFormat 总体一览
+  <a href="#_2" class="md-nav__link">
+    总览
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    数据结构
+  <a href="#_3" class="md-nav__link">
+    缓冲对照表
   </a>
-  
-    <nav class="md-nav" aria-label="数据结构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#typescript" class="md-nav__link">
-    TypeScript
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -325,29 +312,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#phiformat" class="md-nav__link">
-    PhiFormat 总体一览
+  <a href="#_2" class="md-nav__link">
+    总览
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    数据结构
+  <a href="#_3" class="md-nav__link">
+    缓冲对照表
   </a>
-  
-    <nav class="md-nav" aria-label="数据结构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#typescript" class="md-nav__link">
-    TypeScript
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -363,168 +337,162 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/phi-x/PhiFormat/edit/master/docs/spec.md" title="编辑此页" class="md-content__button md-icon">
+                  <a href="https://github.com/phi-x/PhiFormat/edit/master/docs/specs.md" title="编辑此页" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
                 <h1 id="_1">规范文档<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="phiformat">PhiFormat 总体一览<a class="headerlink" href="#phiformat" title="Permanent link">&para;</a></h2>
+<h2 id="_2">总览<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code>(object) -&gt;
-    $schema (string)
-    timing (object) -&gt;
-        offset (number)
-        bpmList (array) -&gt; // Should not be empty.
-            (object) -&gt;
-                id (integer)
-                time (integer)
-                bpm (number)
+    schemaVersion (integer)
+    musicOffset (number)
+    timingBase (integer)
+    bpmList (array) -&gt;
+        (object) -&gt;
+            id (integer)
+            time (integer)
+            bpm (number)
     judgeLineList (array) -&gt;
         (object) -&gt;
             id (integer)
-            eventList (array) -&gt;
-                (object) -&gt;
-                    id (integer)
-                    type (string) // move, rotate, fade, speed or construct.
-                    startTime (integer)
-                    endTime (integer)
-                    properties (object) -&gt;
-                        (...)
             noteList (array) -&gt;
                 (object) -&gt;
                     id (integer)
-                    type (string) // click, flick, drag or hold.
-                    startTime (integer)
-                    endTime (integer)
-                    showTime (integer) // Defaults to 0.
-                    relativeX (number)
-                    side (integer) // Should be 1 or -1.
-                    speed (number) // Defaults to 1.
-                    isFake (bool) // Defaults to false.
+                    type (integer) // 1 for tap, 2 for drag, 3 for hold, 4 for click
+                    time (integer)
+                    holdTime (integer)
+                    x (number)
+                    width (number)
+                    speed (number)
+                    side (integer) // 1 -1
+                    isFake (boolean)
+            props (object) -&gt;
+                controlX (array) -&gt;
+                    (object) -&gt;
+                        id (integer)
+                        time (integer)
+                        value (number)
+                        easing (string)
+                controlY ...
+                angle ...
+                speed ...
+                noteAlpha ...
+                lineAlpha ...
+                displayRange ...
 </code></pre></div>
 
-<h2 id="_2">数据结构<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="typescript">TypeScript<a class="headerlink" href="#typescript" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="k">export</span> <span class="kd">interface</span> <span class="nx">BpmData</span> <span class="p">{</span>
-  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">time</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">bpm</span>: <span class="kt">number</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">TimingData</span> <span class="p">{</span>
-  <span class="nx">offset</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">bpmList</span>: <span class="kt">BpmData</span><span class="p">[];</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">type</span> <span class="nx">Ease</span> <span class="o">=</span>
-  <span class="s1">&#39;linear&#39;</span>    <span class="o">|</span>
-  <span class="s1">&#39;backIn&#39;</span>    <span class="o">|</span> <span class="s1">&#39;backOut&#39;</span>    <span class="o">|</span>
-  <span class="s1">&#39;bounceIn&#39;</span>  <span class="o">|</span> <span class="s1">&#39;bounceOut&#39;</span>  <span class="o">|</span>
-  <span class="s1">&#39;circIn&#39;</span>    <span class="o">|</span> <span class="s1">&#39;circOut&#39;</span>    <span class="o">|</span>
-  <span class="s1">&#39;cubicIn&#39;</span>   <span class="o">|</span> <span class="s1">&#39;cubicOut&#39;</span>   <span class="o">|</span>
-  <span class="s1">&#39;elasticIn&#39;</span> <span class="o">|</span> <span class="s1">&#39;elasticOut&#39;</span> <span class="o">|</span>
-  <span class="s1">&#39;expoIn&#39;</span>    <span class="o">|</span> <span class="s1">&#39;expoOut&#39;</span>    <span class="o">|</span>
-  <span class="s1">&#39;quadIn&#39;</span>    <span class="o">|</span> <span class="s1">&#39;quadOut&#39;</span>    <span class="o">|</span>
-  <span class="s1">&#39;quartIn&#39;</span>   <span class="o">|</span> <span class="s1">&#39;quartOut&#39;</span>   <span class="o">|</span>
-  <span class="s1">&#39;quintIn&#39;</span>   <span class="o">|</span> <span class="s1">&#39;quintOut&#39;</span>   <span class="o">|</span>
-  <span class="s1">&#39;sineIn&#39;</span>    <span class="o">|</span> <span class="s1">&#39;sineOut&#39;</span>    <span class="p">;</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
-  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
-  <span class="nx">startTime</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">endTime</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">properties</span>: <span class="kt">Record</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">ConstructEventData</span> <span class="k">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;construct&#39;</span><span class="p">;</span>
-  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">angle</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">alpha</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">speed</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">MoveEventData</span> <span class="k">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;move&#39;</span><span class="p">;</span>
-  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">easeX</span>: <span class="kt">Ease</span><span class="p">;</span>
-    <span class="nx">easeY</span>: <span class="kt">Ease</span><span class="p">;</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">RotateEventData</span> <span class="k">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;rotate&#39;</span><span class="p">;</span>
-  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">angle</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">ease</span>: <span class="kt">Ease</span><span class="p">;</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">FadeEventData</span> <span class="k">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;fade&#39;</span><span class="p">;</span>
-  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">alpha</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">ease</span>: <span class="kt">Ease</span><span class="p">;</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">SpeedEventData</span> <span class="k">extends</span> <span class="nx">BaseEventData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;speed&#39;</span><span class="p">;</span>
-  <span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">speed</span>: <span class="kt">number</span><span class="p">;</span>
-    <span class="nx">ease</span>: <span class="kt">Ease</span><span class="p">;</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">type</span> <span class="nx">EventData</span> <span class="o">=</span> <span class="nx">ConstructEventData</span> <span class="o">|</span> <span class="nx">MoveEventData</span> <span class="o">|</span> <span class="nx">RotateEventData</span> <span class="o">|</span> <span class="nx">FadeEventData</span> <span class="o">|</span> <span class="nx">SpeedEventData</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
-  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
-  <span class="nx">startTime</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">endTime</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">showTime</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">relativeX</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">side</span>: <span class="kt">1</span> <span class="o">|</span> <span class="o">-</span><span class="mf">1</span><span class="p">;</span>
-  <span class="nx">speed</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">isFake</span>: <span class="kt">boolean</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">ClickNoteData</span> <span class="k">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">FlickNoteData</span> <span class="k">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;flick&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">DragNoteData</span> <span class="k">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;drag&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">HoldNoteData</span> <span class="k">extends</span> <span class="nx">BaseNoteData</span> <span class="p">{</span>
-  <span class="kd">type</span><span class="o">:</span> <span class="s1">&#39;hold&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">type</span> <span class="nx">NoteData</span> <span class="o">=</span> <span class="nx">ClickNoteData</span> <span class="o">|</span> <span class="nx">FlickNoteData</span> <span class="o">|</span> <span class="nx">DragNoteData</span> <span class="o">|</span> <span class="nx">HoldNoteData</span><span class="p">;</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">JudgeLineData</span> <span class="p">{</span>
-  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
-  <span class="nx">eventList</span>: <span class="kt">EventData</span><span class="p">[];</span>
-  <span class="nx">noteList</span>: <span class="kt">NoteData</span><span class="p">[];</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="kd">interface</span> <span class="nx">ChartData</span> <span class="p">{</span>
-  <span class="nx">timing</span>: <span class="kt">TimingData</span><span class="p">;</span>
-  <span class="nx">judgeLineList</span>: <span class="kt">JudgeLineData</span><span class="p">[];</span>
-<span class="p">}</span>
-</code></pre></div>
+<h2 id="_3">缓冲对照表<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Easing</th>
+<th>ID</th>
+<th>Easing</th>
+<th>ID</th>
+<th>Easing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>none</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>easeInSine</td>
+<td>2</td>
+<td>easeOutSine</td>
+<td>3</td>
+<td>easeInOutSine</td>
+</tr>
+<tr>
+<td>4</td>
+<td>easeInQuad</td>
+<td>5</td>
+<td>easeOutQuad</td>
+<td>6</td>
+<td>easeInOutQuad</td>
+</tr>
+<tr>
+<td>7</td>
+<td>easeInCubic</td>
+<td>8</td>
+<td>easeOutCubic</td>
+<td>9</td>
+<td>easeInOutCubic</td>
+</tr>
+<tr>
+<td>10</td>
+<td>easeInQuart</td>
+<td>11</td>
+<td>easeOutQuart</td>
+<td>12</td>
+<td>easeInOutQuart</td>
+</tr>
+<tr>
+<td>13</td>
+<td>easeInQuint</td>
+<td>14</td>
+<td>easeOutQuint</td>
+<td>15</td>
+<td>easeInOutQuint</td>
+</tr>
+<tr>
+<td>16</td>
+<td>easeInExpo</td>
+<td>17</td>
+<td>easeOutExpo</td>
+<td>18</td>
+<td>easeInOutExpo</td>
+</tr>
+<tr>
+<td>19</td>
+<td>easeInCirc</td>
+<td>20</td>
+<td>easeOutCirc</td>
+<td>21</td>
+<td>easeInOutCirc</td>
+</tr>
+<tr>
+<td>22</td>
+<td>easeInBack</td>
+<td>23</td>
+<td>easeOutBack</td>
+<td>34</td>
+<td>easeInOutBack</td>
+</tr>
+<tr>
+<td>25</td>
+<td>easeInElastic</td>
+<td>26</td>
+<td>easeOutElastic</td>
+<td>27</td>
+<td>easeInOutElastic</td>
+</tr>
+<tr>
+<td>28</td>
+<td>easeInBounce</td>
+<td>29</td>
+<td>easeOutBounce</td>
+<td>30</td>
+<td>easeInOutBounce</td>
+</tr>
+<tr>
+<td>31</td>
+<td>linear</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
                 
               
               
