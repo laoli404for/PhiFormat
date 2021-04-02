@@ -18,45 +18,11 @@ export interface NoteData {
   isFake: boolean;
 }
 
-export type Easing =
-  | 'easeInBack'
-  | 'easeInBounce'
-  | 'easeInCirc'
-  | 'easeInCubic'
-  | 'easeInElastic'
-  | 'easeInExpo'
-  | 'easeInOutBack'
-  | 'easeInOutBounce'
-  | 'easeInOutCirc'
-  | 'easeInOutCubic'
-  | 'easeInOutElastic'
-  | 'easeInOutExpo'
-  | 'easeInOutQuad'
-  | 'easeInOutQuart'
-  | 'easeInOutQuint'
-  | 'easeInOutSine'
-  | 'easeInQuad'
-  | 'easeInQuart'
-  | 'easeInQuint'
-  | 'easeInSine'
-  | 'easeOutBack'
-  | 'easeOutBounce'
-  | 'easeOutCirc'
-  | 'easeOutCubic'
-  | 'easeOutElastic'
-  | 'easeOutExpo'
-  | 'easeOutQuad'
-  | 'easeOutQuart'
-  | 'easeOutQuint'
-  | 'easeOutSine'
-  | 'linear'
-  | 'none';
-
 export interface State {
   id: integer;
   time: integer;
   value: number;
-  easing: Easing;
+  easing: integer;
 }
 
 export interface JudgeLineData {
