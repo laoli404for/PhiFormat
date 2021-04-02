@@ -3,7 +3,7 @@ name: Build Pages
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   deploy:
@@ -40,7 +40,7 @@ jobs:
       run: python3 -m pip install -r ./requirements.txt
 
     - name: Build
-      run: make PX=npx
+      run: mkdocs build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
