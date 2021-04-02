@@ -56,3 +56,4 @@
 | 22  | easeInBack    | 23  | easeOutBack    | 34  | easeInOutBack    |
 | 25  | easeInElastic | 26  | easeOutElastic | 27  | easeInOutElastic |
 | 28  | easeInBounce  | 29  | easeOutBounce  | 30  | easeInOutBounce  |
+| 31  | linear        |     |                |     |                  |
