@@ -37,7 +37,8 @@
   "type": "object",
   "properties": {
     "schemaVersion": {
-      "type": "integer"
+      "type": "integer",
+      "const": 2
     },
     "musicOffset": {
       "type": "number"
