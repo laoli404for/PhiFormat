@@ -45,7 +45,7 @@
 
 | ID  | Easing        | ID  | Easing         | ID  | Easing           |
 | --- | ------------- | --- | -------------- | --- | ---------------- |
-| 0   | none          |     |                |     |                  |
+| 0   | linear        |     |                |     |                  |
 | 1   | easeInSine    | 2   | easeOutSine    | 3   | easeInOutSine    |
 | 4   | easeInQuad    | 5   | easeOutQuad    | 6   | easeInOutQuad    |
 | 7   | easeInCubic   | 8   | easeOutCubic   | 9   | easeInOutCubic   |
@@ -56,4 +56,3 @@
 | 22  | easeInBack    | 23  | easeOutBack    | 34  | easeInOutBack    |
 | 25  | easeInElastic | 26  | easeOutElastic | 27  | easeInOutElastic |
 | 28  | easeInBounce  | 29  | easeOutBounce  | 30  | easeInOutBounce  |
-| 31  | linear        |     |                |     |                  |

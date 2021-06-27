@@ -1,16 +1,14 @@
-type integer = number;
-
 export interface BpmData {
-  id: integer;
-  time: integer;
+  id: number;
+  time: number;
   bpm: number;
 }
 
 export interface NoteData {
-  id: integer;
+  id: number;
   type: 1 | 2 | 3 | 4;
-  time: integer;
-  holdTime: integer;
+  time: number;
+  holdTime: number;
   x: number;
   width: number;
   speed: number;
@@ -19,14 +17,14 @@ export interface NoteData {
 }
 
 export interface State {
-  id: integer;
-  time: integer;
+  id: number;
+  time: number;
   value: number;
-  easing: integer;
+  easing: number | null;
 }
 
 export interface JudgeLineData {
-  id: integer;
+  id: number;
   noteList: NoteData[];
   props: {
     controlX: State[];
@@ -40,9 +38,9 @@ export interface JudgeLineData {
 }
 
 export interface ChartData {
-  schemaVersion: integer;
+  schemaVersion: number;
   musicOffset: number;
-  timingBase: integer;
+  timingBase: number;
   bpmList: BpmData[];
   judgeLineList: JudgeLineData[];
 }

@@ -18,10 +18,16 @@
           "type": "number"
         },
         "easing": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 31,
-          "default": 0
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 30    
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": ["id", "time", "value"]
