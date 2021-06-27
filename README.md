@@ -1,4 +1,4 @@
-# PhiFormat (WIP)
+# PhiFormat
 
 **A fanmade level format for the music game [_Phigros_](https://zh.moegirl.org.cn/Phigros).**
 
