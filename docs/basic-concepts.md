@@ -110,7 +110,7 @@ PhiFormat 设计上支持多 BPM 的音乐。
 | 1    | Tap   |
 | 2    | Drag  |
 | 3    | Hold  |
-| 4    | Click |
+| 4    | Flick |
 
 ### x 轴位置 (x)
 

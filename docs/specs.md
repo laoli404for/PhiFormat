@@ -18,7 +18,7 @@
             noteList (array) ->
                 (object) ->
                     id (integer)
-                    type (integer) // 1 for tap, 2 for drag, 3 for hold, 4 for click
+                    type (integer) // 1 for tap, 2 for drag, 3 for hold, 4 for flick
                     time (integer)
                     holdTime (integer)
                     x (number)
