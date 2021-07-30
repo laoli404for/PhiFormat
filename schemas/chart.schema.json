@@ -6,10 +6,6 @@
     "state": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "minimum": 0
-        },
         "time": {
           "type": "integer",
           "minimum": 0
@@ -52,10 +48,6 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "minimum": 0
-          },
           "time": {
             "type": "integer",
             "minimum": 0

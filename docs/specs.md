@@ -9,7 +9,6 @@
     timingBase (integer)
     bpmList (array) ->
         (object) ->
-            id (integer)
             time (integer)
             bpm (number)
     judgeLineList (array) ->
@@ -29,7 +28,6 @@
             props (object) ->
                 controlX (array) ->
                     (object) ->
-                        id (integer)
                         time (integer)
                         value (number)
                         easing (string)

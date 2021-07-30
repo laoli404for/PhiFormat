@@ -1,5 +1,4 @@
 export interface BpmData {
-  id: number;
   time: number;
   bpm: number;
 }
@@ -17,7 +16,6 @@ export interface NoteData {
 }
 
 export interface State {
-  id: number;
   time: number;
   value: number;
   easing: number | null;
