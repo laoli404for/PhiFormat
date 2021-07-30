@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://phi-x.github.io/PhiFormat/</loc>
-         <lastmod>2021-06-27</lastmod>
+         <lastmod>2021-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://phi-x.github.io/PhiFormat/basic-concepts/</loc>
-         <lastmod>2021-06-27</lastmod>
+         <lastmod>2021-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://phi-x.github.io/PhiFormat/specs/</loc>
-         <lastmod>2021-06-27</lastmod>
+         <lastmod>2021-07-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://phi-x.github.io/PhiFormat/basic-concepts/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.1">
     
     
       
@@ -24,10 +24,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1118c9be.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
         
           
           
@@ -118,14 +118,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -701,15 +705,15 @@
 <p>在 PhiFormat 中，tick 为整数值，从 0 开始计算。0 tick 被视为曲目的起始（0 second）。每一拍根据 <strong>时基 (Timing Base)</strong> 被划分为指定数量的 tick 数。默认情况下，时基为 48。48 分能够满足绝大多数的谱面制作需求。若无更细致的节拍划分需求，<strong>不建议</strong> 修改时基。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-</div>
 <p>编辑器作者请注意，您应该在编辑器中提供修改时基的选项，但应明确指出不建议修改。</p>
+</div>
 <h3 id="half-screen-length-hslphiformat">半屏长 (Half-Screen Length, HSL)：PhiFormat 基本长度单位<a class="headerlink" href="#half-screen-length-hslphiformat" title="Permanent link">&para;</a></h3>
 <p><strong>半屏长 (HSL)</strong> 是 PhiFormat 为兼容性而自定义的长度单位。1 HSL 等同于一个屏幕的长边的一半。接下来你会很经常看到它。</p>
 <h2 id="_3">坐标系统和判定线<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-</div>
 <p>当我们讨论这一章节的时候，我们假定你有至少高中一年级的数学知识。</p>
+</div>
 <h3 id="_4">基准坐标系和单位长度<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p><strong>基准坐标系</strong> 是用于定位判定线控制点的坐标系。</p>
 <p>假设有一个 1:1 大小的平面，以该平面的正中心作为原点，向水平和竖直方向各引一条坐标轴作为 x, y 轴，定义单位长度为 1 HSL。这就是基准坐标系。</p>
@@ -723,11 +727,12 @@
 <p>在这个文档中,你可以将所有屏幕的比例想象成 1:1。要适配不同屏幕，只需要将它们沿 y 轴伸缩就行。</p>
 <h3 id="_5">判定线与控制点<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>在一个坐标系上过一点画直线需要什么？这一点的坐标和斜率。同样的道理，在 PhiFormat 中，定义一个判定线的方法是在基准坐标系中选取一个 <strong>控制点</strong>，然后用这一点的坐标和旋转角来确定这条判定线。</p>
+<p>我们规定，判定线是一条以控制点为中点，长度为 6 HSL 的线段。</p>
 <p>就和你在高中数学学到的一样，我们规定：旋转角 0° 的判定线水平放置。此时朝上的面为这条判定线的“上面”，朝下的面为这条判定线的“下面”。</p>
 <div class="admonition note">
 <p class="admonition-title">为什么不用斜率？</p>
-</div>
 <p>竖直直线的斜率不存在。</p>
+</div>
 <p>下面是一条控制点在 (0.2,-0.1)，旋转角为 50° 的判定线在三种缩放下的基准坐标系的展现：</p>
 <p><img alt="1:1 判定线示例" src="../assets/line_example-1x1.png" /></p>
 <p>
@@ -794,7 +799,7 @@
 <p>代表这个 note 是否为“假 note”（又称“表演 note”）。布尔值，默认为 false。</p>
 <h2 id="easing">缓冲 (Easing)<a class="headerlink" href="#easing" title="Permanent link">&para;</a></h2>
 <p>“缓冲”是相当常见的一种在两个状态之间渐变的状态。在 PhiFormat 中，每一个状态的 easing 属性均代表 <strong>该状态</strong> 到 <strong>下一个状态</strong> 的缓冲。</p>
-<p>在 PhiFormat 中缓冲种类为一个整数。该整数与具体类型的对应请参照规范文档。</p>
+<p>在 PhiFormat 中缓冲种类为一个整数或 null。当缓冲种类为 null 时，判定线状态将会会在 <strong>下一个状态</strong> 的时间处立刻更改，没有渐变过程。整数与具体缓冲类型的对应请参照规范文档。</p>
                 
               
               
@@ -869,10 +874,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      <script src="../assets/javascripts/bundle.716f8af4.min.js"></script>
       
     
   </body>
